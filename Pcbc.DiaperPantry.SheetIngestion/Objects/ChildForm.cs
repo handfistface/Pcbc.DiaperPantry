@@ -2,6 +2,11 @@
 {
     public class ChildForm
     {
+        public ChildForm()
+        {
+            Children = new List<Child>();
+        }
+
         //#	Created	Link	1. First and Last Name	2. Address (line-1)	2. Address (line-2)	2. Address (city)	2. Address (state)	
         //2. Address (zip)	2. Address (country)	3. Your Phone Number	4. Your Email	5. Relationship to child	
         //6. Does this child/children reside with you?	
@@ -26,7 +31,7 @@
         public string EmailAddress { get; set; }
         public string RelationshipToChild { get; set; }
         public bool DoesChildResideInSameHousehold { get; set; }
-        List<Child> Children { get; set; }
+        public List<Child> Children { get; set; }
         public string AnyOtherNeeds { get; set; }
         public bool DiaperMinistryContact { get; set; }
         public string PreferredMinistryContact { get; set; }

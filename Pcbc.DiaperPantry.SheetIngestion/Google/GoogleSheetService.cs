@@ -115,11 +115,11 @@ namespace Pcbc.DiaperPantry.SheetIngestion.Google
 
                     var expando = new ExpandoObject();
                     var expandoDict = expando as IDictionary<String, object>;
-                    var columnCounter = 0;
+                    var columnCounter = 3;
                     expandoDict.Add("Id", row[0].ToString());
                     expandoDict.Add("CreatedDateTime", row[1].ToString());
                     expandoDict.Add("Link", row[2].ToString());
-                    var toIngest = columnNames.Skip(3).ToList();
+                    var toIngest = columnNames.Skip(columnCounter).ToList();
                     foreach (var columnName in toIngest)
                     {
                         if (columnCounter >= row.Count())
