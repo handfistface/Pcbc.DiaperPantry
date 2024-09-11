@@ -3,6 +3,7 @@ using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Util.Store;
 using Pcbc.DiaperPantry.SheetIngestion.Mapping;
+using Pcbc.DiaperPantry.SheetIngestion.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -69,7 +70,7 @@ namespace Pcbc.DiaperPantry.SheetIngestion.Google
             return "";
         }
 
-        public List<ExpandoObject> GetDataFromSheet()
+        public List<ChildForm> GetDataFromSheet()
         {
             var rangeColumnStart = 0;
             var rangeColumnEnd = 45;
@@ -132,9 +133,8 @@ namespace Pcbc.DiaperPantry.SheetIngestion.Google
                 }
             }
 
-            var ret = _dynamoMapper.Map(returnValues[1]);
-
-            return returnValues;
+            var mappedReturn = _dynamoMapper.Map(returnValues);
+            return mappedReturn;
         }
 
         /// <summary>

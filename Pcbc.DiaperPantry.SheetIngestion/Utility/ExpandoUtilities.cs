@@ -6,7 +6,10 @@ namespace Pcbc.DiaperPantry.SheetIngestion.Utility
     {
         public static string GetByPropertyName(ExpandoObject obj, string propertyName)
         {
-            return ((IDictionary<string, object>)obj)[propertyName] as string ?? "";
+            var convertedDictionary = ((IDictionary<string, object>)obj);
+            if (!convertedDictionary.Keys.Contains(propertyName))
+                return "";
+            return convertedDictionary[propertyName] as string;
         }
     }
 }
