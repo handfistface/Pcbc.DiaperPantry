@@ -10,4 +10,8 @@ The spreadsheet is titled "New Child Form" for the "Diaper Pantry Child Form" on
 + Ingest the Adult Registration Form
 + Drop results from the google sheet into a database
 + Make a UI program that can allow Judy to type up a formatted email and bulk send them to all the people who have recently visited the diaper pantry
-+ 
+
+
+## MySql Server
+I have the database running on a flavor of MySql Server. 
+I am currently running this on my Ubuntu dev box in virtualbox. 

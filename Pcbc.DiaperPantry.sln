@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pcbc.DiaperPantry.SheetInge
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{49B3F2AF-C484-423B-AE46-68B22660367C}"
 	ProjectSection(SolutionItems) = preProject
+		Documents\devNotes.md = Documents\devNotes.md
 		readme.md = readme.md
 	EndProjectSection
 EndProject
