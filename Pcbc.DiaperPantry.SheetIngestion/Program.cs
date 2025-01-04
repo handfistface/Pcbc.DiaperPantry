@@ -1,5 +1,8 @@
 ﻿using Pcbc.DiaperPantry.SheetIngestion;
 using Pcbc.DiaperPantry.SheetIngestion.Google;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Pcbc.DiaperPantry.SheetIngestion.Tests")]
 
 internal class Program
 {

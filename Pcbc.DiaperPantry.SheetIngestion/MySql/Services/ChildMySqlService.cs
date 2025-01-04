@@ -1,4 +1,8 @@
-﻿using Pcbc.DiaperPantry.SheetIngestion.MySql.Objects;
+﻿using Dapper;
+using MySql.Data.MySqlClient;
+using Pcbc.DiaperPantry.SheetIngestion.MySql.Objects;
+using Pcbc.DiaperPantry.SheetIngestion.Utility;
+using System.Data;
 
 namespace Pcbc.DiaperPantry.SheetIngestion.MySql.Services
 {
@@ -7,18 +11,38 @@ namespace Pcbc.DiaperPantry.SheetIngestion.MySql.Services
     /// </summary>
     public class ChildMySqlService
     {
-        private static string _dbConnectionString { get; set; }
+        private readonly IConfigFile _configFile;
 
-        public ChildMySqlService()
+        public ChildMySqlService(IConfigFile configFile)
         {
-            var username = "";
-            var password = "";
-            _dbConnectionString = $"Server=192.168.0.35;Database=Pcbc.DiaperPantry;Uid={username};Pwd={password};";
+            _configFile = configFile;
         }
 
-        public ChildSql GetAllChildren()
+        public ChildSql? GetChildById(int childId)
         {
-            return null;
+            using var connection = new MySqlConnection(_configFile.DiaperPantryConnectionString);
+            var sql = $"CALL `Pcbc.DiaperPantry`.Get_Child_ById({childId})";
+            var reader = connection.ExecuteReader(sql);
+
+            var children = ParseReader(reader);
+            return children.FirstOrDefault();
+        }
+
+        /// <summary>
+        ///     Parses a collection of children from the query result
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private List<ChildSql> ParseReader(IDataReader reader)
+        {
+            var parser = reader.GetRowParser<ChildSql>(typeof(ChildSql));
+            var children = new List<ChildSql>();
+            while (reader.Read())
+            {
+                var myObject = parser(reader);
+                children.Add(myObject);
+            }
+            return children;
         }
     }
 }
