@@ -15,6 +15,7 @@ namespace Pcbc.DiaperPantry.SheetIngestion
                 .AddScoped<IDynamoToChildForm, DynamoToChildForm>()
                 .AddScoped<IFileManipulator, FileManipulator>()
                 .AddScoped<IConfigFile, ConfigFile>()
+                .AddScoped<IRegexService, RegexService>()
                 .BuildServiceProvider();
             return serviceProvider;
         }
